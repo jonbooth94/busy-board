@@ -1,0 +1,23 @@
+{
+  "id": "big-button",
+  "name": "Big button",
+  "type": "momentary",
+  "art": "big-button",
+  "slot": { "col": 1, "row": 1 },
+  "hitPadding": 24,
+  "cooldownMs": 250,
+  "initial": "idle",
+  "durationMs": 350,
+  "states": {
+    "idle": {},
+    "pressed": {
+      "onEnter": {
+        "sounds": ["boop_1", "boop_2", "boop_3"],
+        "anim": "squish",
+        "cues": [{ "atMs": 1150, "sounds": ["bubble_pop_1", "bubble_pop_2"] }]
+      }
+    }
+  },
+  "idleHint": "wiggle",
+  "prompt": "Push the big button! Boop!"
+}

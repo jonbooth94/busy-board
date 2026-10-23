@@ -1,0 +1,17 @@
+{
+  "id": "lock-and-key",
+  "name": "Lock and key",
+  "type": "toggle",
+  "art": "lock-and-key",
+  "slot": { "col": 4, "row": 3 },
+  "hitPadding": 24,
+  "cooldownMs": 250,
+  "animMs": 600,
+  "initial": "locked",
+  "states": {
+    "locked": { "sprite": "lock_closed", "onEnter": { "sounds": ["lock_close_1", "lock_close_2"], "anim": "settle" } },
+    "open":   { "sprite": "lock_open",   "onEnter": { "sounds": ["lock_open_1", "lock_open_2"],   "anim": "sparkle" } }
+  },
+  "idleHint": "wiggle",
+  "prompt": "Turn the key. Click! It's open. Can you lock it again?"
+}

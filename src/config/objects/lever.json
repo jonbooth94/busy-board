@@ -1,0 +1,27 @@
+{
+  "id": "lever",
+  "name": "Lever",
+  "type": "momentary",
+  "art": "lever",
+  "slot": { "col": 4, "row": 1 },
+  "hitPadding": 24,
+  "cooldownMs": 250,
+  "initial": "up",
+  "durationMs": 1500,
+  "states": {
+    "up": {},
+    "down": {
+      "onEnter": {
+        "sounds": ["lever_1", "lever_2"],
+        "anim": "pull",
+        "cues": [
+          { "atMs": 250, "sounds": ["roll_1", "roll_2"] },
+          { "atMs": 850, "sounds": ["cup_1", "cup_2"] }
+        ]
+      }
+    }
+  },
+  "optionalGesture": { "kind": "drag", "axis": "vertical" },
+  "idleHint": "wiggle",
+  "prompt": "Pull the lever down. Where did the ball go?"
+}

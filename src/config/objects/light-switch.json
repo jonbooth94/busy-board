@@ -1,0 +1,18 @@
+{
+  "id": "light-switch",
+  "name": "Light switch",
+  "type": "toggle",
+  "art": "light-switch",
+  "slot": { "col": 2, "row": 1 },
+  "hitPadding": 24,
+  "cooldownMs": 250,
+  "animMs": 300,
+  "initial": "off",
+  "states": {
+    "off": { "sprite": "switch_down", "onEnter": { "sounds": ["click_off_1", "click_off_2"], "anim": "lamp_dim" } },
+    "on":  { "sprite": "switch_up",   "onEnter": { "sounds": ["click_on_1", "click_on_2"],  "anim": "lamp_glow" } }
+  },
+  "optionalGesture": { "kind": "swipe", "axis": "vertical", "directions": { "up": "on", "down": "off" } },
+  "idleHint": "wiggle",
+  "prompt": "Can you turn the light on? Now off!"
+}

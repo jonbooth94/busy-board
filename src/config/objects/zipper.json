@@ -1,0 +1,18 @@
+{
+  "id": "zipper",
+  "name": "Zipper",
+  "type": "toggle",
+  "art": "zipper",
+  "slot": { "col": 3, "row": 3 },
+  "hitPadding": 24,
+  "cooldownMs": 250,
+  "animMs": 500,
+  "initial": "closed",
+  "states": {
+    "closed": { "sprite": "zip_closed", "onEnter": { "sounds": ["zip_close_1", "zip_close_2"], "anim": "jiggle" } },
+    "open":   { "sprite": "zip_open",   "onEnter": { "sounds": ["zip_open_1", "zip_open_2"],   "anim": "reveal" } }
+  },
+  "optionalGesture": { "kind": "swipe", "axis": "horizontal", "directions": { "right": "open", "left": "closed" } },
+  "idleHint": "wiggle",
+  "prompt": "Zip it open! What's inside? A flower!"
+}

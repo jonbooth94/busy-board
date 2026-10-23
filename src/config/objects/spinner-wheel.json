@@ -1,0 +1,22 @@
+{
+  "id": "spinner-wheel",
+  "name": "Spinner wheel",
+  "type": "timed",
+  "art": "spinner-wheel",
+  "slot": { "col": 2, "row": 2 },
+  "hitPadding": 24,
+  "cooldownMs": 250,
+  "initial": "still",
+  "durationMs": 2400,
+  "addMs": 800,
+  "capMs": 3000,
+  "states": {
+    "still": {},
+    "spinning": { "onEnter": { "sounds": ["spin_start_1", "spin_start_2"] } }
+  },
+  "tick": { "sounds": ["spin_click_1", "spin_click_2", "spin_click_3"] },
+  "onExtend": { "sounds": ["spin_start_1", "spin_start_2"] },
+  "optionalGesture": { "kind": "swipe" },
+  "idleHint": "wiggle",
+  "prompt": "Spin the wheel! Round and round... and stop."
+}

@@ -1,0 +1,20 @@
+{
+  "id": "color-knob",
+  "name": "Color knob",
+  "type": "cycle",
+  "art": "color-knob",
+  "slot": { "col": 1, "row": 2 },
+  "hitPadding": 24,
+  "cooldownMs": 250,
+  "initial": "red",
+  "order": ["red", "yellow", "green", "blue"],
+  "states": {
+    "red":    { "sprite": "light_red",    "onEnter": { "sounds": ["knob_c_1", "knob_c_2"], "anim": "turn" } },
+    "yellow": { "sprite": "light_yellow", "onEnter": { "sounds": ["knob_d_1", "knob_d_2"], "anim": "turn" } },
+    "green":  { "sprite": "light_green",  "onEnter": { "sounds": ["knob_e_1", "knob_e_2"], "anim": "turn" } },
+    "blue":   { "sprite": "light_blue",   "onEnter": { "sounds": ["knob_g_1", "knob_g_2"], "anim": "turn" } }
+  },
+  "optionalGesture": { "kind": "circular" },
+  "idleHint": "wiggle",
+  "prompt": "Turn the knob. What color is the light now?"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "three-keys",
+  "name": "Three keys",
+  "type": "instrument",
+  "art": "three-keys",
+  "slot": { "col": 1, "row": 3 },
+  "hitPadding": 24,
+  "cooldownMs": 80,
+  "zones": [
+    { "id": "c", "onEnter": { "sounds": ["key_c_1", "key_c_2"], "anim": "press_c" } },
+    { "id": "e", "onEnter": { "sounds": ["key_e_1", "key_e_2"], "anim": "press_e" } },
+    { "id": "g", "onEnter": { "sounds": ["key_g_1", "key_g_2"], "anim": "press_g" } }
+  ],
+  "optionalGesture": { "kind": "slide" },
+  "idleHint": "wiggle",
+  "prompt": "Let's make music! Can you play the red one?"
+}

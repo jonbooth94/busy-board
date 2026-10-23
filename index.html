@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#a8723f" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Busy Board" />
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <title>Busy Board</title>
+</head>
+<body data-screen="cover">
+  <main id="board" class="board"></main>
+
+  <div id="cover" class="cover" aria-hidden="true">
+    <div class="door left"><span class="knob"></span></div>
+    <div class="door right"><span class="knob"></span></div>
+    <div class="night">
+      <svg viewBox="0 0 200 120" aria-hidden="true">
+        <path d="M118 18 A44 44 0 1 0 150 84 A36 36 0 1 1 118 18 Z" fill="#f6ead2" stroke="#4a3426" stroke-width="5" stroke-linejoin="round"/>
+        <path d="M40 30 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3z M170 24 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2z M30 92 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2z M178 96 l3 6 6 3 -6 3 -3 6 -3 -6 -6 -3 6 -3z" fill="#e3b04b" stroke="#4a3426" stroke-width="3" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <div id="rotate" class="rotate" aria-hidden="true">
+    <svg viewBox="0 0 120 120"><rect x="38" y="22" width="44" height="76" rx="8" fill="#f6ead2" stroke="#4a3426" stroke-width="6"/><path d="M20 70 A44 44 0 0 0 54 108 M50 100 l5 8 -9 2" fill="none" stroke="#4a3426" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+
+  <button id="gate" class="gate" type="button" aria-label="Parent settings (press and hold)"></button>
+  <div id="parent" class="parent" hidden></div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

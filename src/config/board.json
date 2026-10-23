@@ -1,0 +1,21 @@
+{
+  "cols": 4,
+  "rows": 3,
+  "objects": [
+    "big-button", "light-switch", "doorbell", "lever",
+    "color-knob", "spinner-wheel", "gears", "clock",
+    "three-keys", "slide-whistle", "zipper", "lock-and-key"
+  ],
+  "edgeDeadZone": 40,
+  "maxTouches": 5,
+  "palmSize": 80,
+  "dragThreshold": 12,
+  "idleHintMs": 8000,
+  "windDownMs": 30000,
+  "gateHoldMs": 3000,
+  "maxVoices": 6,
+  "emptyTap": { "sounds": ["wood_tap_1", "wood_tap_2", "wood_tap_3"] },
+  "coverOpen": { "sounds": ["cover_open_1", "cover_open_2"] },
+  "fallAsleep": { "sounds": ["sleep_1", "sleep_2", "sleep_3"] },
+  "goodnight": { "sounds": ["goodnight_1", "goodnight_2"] }
+}

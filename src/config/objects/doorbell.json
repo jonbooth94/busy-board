@@ -1,0 +1,23 @@
+{
+  "id": "doorbell",
+  "name": "Doorbell",
+  "type": "momentary",
+  "art": "doorbell",
+  "slot": { "col": 3, "row": 1 },
+  "hitPadding": 24,
+  "cooldownMs": 250,
+  "initial": "idle",
+  "durationMs": 1900,
+  "states": {
+    "idle": {},
+    "ringing": {
+      "onEnter": {
+        "sounds": ["ding_dong_1", "ding_dong_2"],
+        "anim": "peek",
+        "cues": [{ "atMs": 550, "sounds": ["peek_1", "peek_2"] }]
+      }
+    }
+  },
+  "idleHint": "wiggle",
+  "prompt": "Ding dong! Who's at the door? It's Bear! Wave hello."
+}

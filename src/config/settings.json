@@ -1,0 +1,10 @@
+{
+  "defaults": {
+    "sessionMinutes": 15,
+    "hidden": [],
+    "volume": "medium",
+    "coPlayPrompts": true
+  },
+  "sessionOptions": [10, 15, 20, null],
+  "volumeLevels": { "low": 0.35, "medium": 0.65, "high": 1 }
+}

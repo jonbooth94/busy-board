@@ -1,0 +1,22 @@
+{
+  "id": "slide-whistle",
+  "name": "Slide whistle",
+  "type": "instrument",
+  "art": "slide-whistle",
+  "slot": { "col": 2, "row": 3 },
+  "hitPadding": 24,
+  "cooldownMs": 80,
+  "zones": [
+    { "id": "1", "onEnter": { "sounds": ["whistle_1_a", "whistle_1_b"], "sprite": "handle_1", "anim": "note" } },
+    { "id": "2", "onEnter": { "sounds": ["whistle_2_a", "whistle_2_b"], "sprite": "handle_2", "anim": "note" } },
+    { "id": "3", "onEnter": { "sounds": ["whistle_3_a", "whistle_3_b"], "sprite": "handle_3", "anim": "note" } },
+    { "id": "4", "onEnter": { "sounds": ["whistle_4_a", "whistle_4_b"], "sprite": "handle_4", "anim": "note" } },
+    { "id": "5", "onEnter": { "sounds": ["whistle_5_a", "whistle_5_b"], "sprite": "handle_5", "anim": "note" } },
+    { "id": "6", "onEnter": { "sounds": ["whistle_6_a", "whistle_6_b"], "sprite": "handle_6", "anim": "note" } },
+    { "id": "7", "onEnter": { "sounds": ["whistle_7_a", "whistle_7_b"], "sprite": "handle_7", "anim": "note" } },
+    { "id": "8", "onEnter": { "sounds": ["whistle_8_a", "whistle_8_b"], "sprite": "handle_8", "anim": "note" } }
+  ],
+  "optionalGesture": { "kind": "slide" },
+  "idleHint": "wiggle",
+  "prompt": "Low... and high! Can you make it go wheee?"
+}

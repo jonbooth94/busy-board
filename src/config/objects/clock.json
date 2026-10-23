@@ -1,0 +1,21 @@
+{
+  "id": "clock",
+  "name": "Clock",
+  "type": "timed",
+  "art": "clock",
+  "slot": { "col": 4, "row": 2 },
+  "hitPadding": 24,
+  "cooldownMs": 250,
+  "initial": "still",
+  "durationMs": 2400,
+  "addMs": 800,
+  "capMs": 3000,
+  "states": {
+    "still": { "onEnter": { "anim": "bird_in" } },
+    "spinning": { "onEnter": { "sounds": ["chirp_1", "chirp_2", "chirp_3"], "anim": "bird_out" } }
+  },
+  "tick": { "sounds": ["clock_tick_1", "clock_tick_2"] },
+  "onExtend": { "sounds": ["chirp_1", "chirp_2", "chirp_3"], "anim": "bird_bob" },
+  "idleHint": "wiggle",
+  "prompt": "Tick tock! Here comes the birdie. Tweet tweet!"
+}
