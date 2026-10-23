@@ -50,6 +50,8 @@ Guided Access keeps the iPad in one app until you end it with a passcode.
 
 To lock it in, use **screen pinning**, exactly as described in the Color Critters README (Settings → Security → App pinning, then pin from the Recents screen).
 
+**If Chrome says "already installed" but the icon says the app isn't available:** the install didn't finish in the background. Long-press the icon → **Remove**, uninstall **Busy Board** in Settings → Apps if it's listed, then install again from Chrome and wait for Android's "installed" notification before tapping the icon. Don't clear Chrome's site data for `jonbooth94.github.io` to fix this: Color Critters lives on the same site, and its drawings would be deleted too.
+
 ## Parent gate and settings
 
 Press and hold the small **moon** in the top-right corner for **3 seconds** while the ring fills. A quick tap does nothing. Holding it pauses the session clock and opens the parent settings:
