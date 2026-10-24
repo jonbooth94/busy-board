@@ -6,13 +6,16 @@ export const DB_NAME = 'busy-board';
 export const DB_VERSION = 1;
 const STORE = 'events';
 
-/** The spec's events, plus session markers so time-to-first-tap and wind-down can be measured. */
-export type EventName = 'tap' | 'drag' | 'ignoredCooldown' | 'idleHint' | 'sessionStart' | 'windDown' | 'sessionEnd';
+/**
+ * The spec's events, plus session markers so time-to-first-tap and wind-down can be measured,
+ * plus "navigate" (objectId "app") each time the view changes, e.g. stateAfter "picker" or "coloring:dog".
+ */
+export type EventName = 'tap' | 'drag' | 'ignoredCooldown' | 'idleHint' | 'sessionStart' | 'windDown' | 'sessionEnd' | 'navigate';
 
 export interface LogRow {
   timestamp: string;
   sessionId: string;
-  /** An object id, "empty" for taps on empty board space, or "board" for session markers. */
+  /** An object id, "empty" for taps on empty board space, "board" for session markers, or "app" for navigation. */
   objectId: string;
   event: EventName;
   stateAfter: string;

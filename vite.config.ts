@@ -10,6 +10,10 @@ export default defineConfig({
   define: {
     __APP_VERSION__: JSON.stringify(version),
   },
+  build: {
+    // Keep every animal SVG as its own file: one broken animal can't break the others.
+    assetsInlineLimit: 0,
+  },
   plugins: [
     VitePWA({
       registerType: 'prompt', // we decide when to activate updates (see src/pwa.ts)
@@ -18,7 +22,7 @@ export default defineConfig({
         id: '/busy-board/',
         name: 'Busy Board',
         short_name: 'Busy Board',
-        description: 'A digital busy board for toddlers. Works offline.',
+        description: 'A digital busy board and coloring app for toddlers. Works offline.',
         start_url: '/busy-board/',
         scope: '/busy-board/',
         display: 'fullscreen',
@@ -32,9 +36,9 @@ export default defineConfig({
         ],
       },
       workbox: {
-        // Precache everything at install so the whole board works offline. (All sounds are
-        // generated in code, so there are no audio files to fetch.)
-        globPatterns: ['**/*.{js,css,html,svg,png,webmanifest}'],
+        // Precache everything at install, including every animal SVG, so the whole app works
+        // offline. (Sounds are generated in code; audio files are only optional animal sounds.)
+        globPatterns: ['**/*.{js,css,html,svg,png,webmanifest,mp3,ogg,wav,m4a}'],
         navigateFallback: 'index.html',
         cleanupOutdatedCaches: true,
         clientsClaim: true,

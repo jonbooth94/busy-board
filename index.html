@@ -13,8 +13,34 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <title>Busy Board</title>
 </head>
-<body data-screen="cover">
-  <main id="board" class="board"></main>
+<body data-screen="cover" data-view="chooser">
+  <!-- One view shows at a time (src/views.ts). Only the parent panel has words. -->
+  <main id="chooser" class="chooser"></main>
+
+  <section id="board-view" hidden>
+    <main id="board" class="board"></main>
+    <button id="board-home" class="home-btn corner" type="button" aria-label="Home"></button>
+  </section>
+
+  <main id="picker" class="screen picker" hidden>
+    <button id="picker-home" class="home-btn corner" type="button" aria-label="Home"></button>
+    <div id="grid" class="animals"></div>
+  </main>
+
+  <main id="coloring" class="screen coloring" hidden>
+    <div class="side">
+      <button id="coloring-home" class="home-btn" type="button" aria-label="Back to the animals"></button>
+      <button id="clear" class="home-btn clear" type="button" aria-label="Clear (press and hold)"></button>
+    </div>
+    <div id="stage" class="stage">
+      <canvas id="paint" width="1024" height="1024"></canvas>
+      <img id="outline" class="outline" alt="" draggable="false" />
+    </div>
+    <div id="palette" class="palette"></div>
+  </main>
+
+  <!-- Wind-down: everything slowly dims over the last 30 seconds. -->
+  <div class="dim" aria-hidden="true"></div>
 
   <div id="cover" class="cover" aria-hidden="true">
     <div class="door left"><span class="knob"></span></div>

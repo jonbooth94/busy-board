@@ -183,6 +183,30 @@ const goodnight = (v: number): Gen => () => {
   return finish(out, 0.3);
 };
 
+// ---------- Color Critters ----------
+
+/** Soft pop for crayon taps. */
+const crayonPop = (v: number): Gen => () => {
+  const out = clip(0.14);
+  tone(out, { dur: 0.11, freq: 620 + v * 70, to: 240 + v * 30, amp: 1, decay: 5 });
+  return finish(out, 0.3);
+};
+
+/** Gentle rising chime when an animal opens. */
+const chime = (v: number): Gen => () => {
+  const out = clip(0.95);
+  const notes = v ? [NOTE.G5, NOTE.C6, NOTE.E6] : [NOTE.C6, NOTE.E6, NOTE.G6];
+  notes.forEach((f, i) => tone(out, { at: i * 0.09, dur: 0.7, freq: f, amp: 0.8, decay: 6 }));
+  return finish(out, 0.24);
+};
+
+/** Soft whoosh when a drawing is cleared. */
+const whoosh = (v: number): Gen => () => {
+  const out = clip(0.62);
+  noise(out, { dur: 0.6, amp: 1, seed: 171 + v, lp: 500 + v * 100, lpTo: 2600, hp: 300, attack: 0.24, decay: 4 });
+  return finish(out, 0.34);
+};
+
 function variants(name: string, count: number, make: (v: number) => Gen, suffix: (v: number) => string = (v) => String(v + 1)): Record<string, Gen> {
   const out: Record<string, Gen> = {};
   for (let v = 0; v < count; v++) out[`${name}_${suffix(v)}`] = make(v);
@@ -223,6 +247,9 @@ export const BANK: Record<string, Gen> = {
   ...variants('cover_open', 2, coverOpen),
   ...variants('sleep', 3, sleep),
   ...variants('goodnight', 2, goodnight),
+  ...variants('crayon_pop', 3, crayonPop),
+  ...variants('chime', 2, chime),
+  ...variants('whoosh', 2, whoosh),
 };
 
 export const SOUND_NAMES: readonly string[] = Object.keys(BANK);

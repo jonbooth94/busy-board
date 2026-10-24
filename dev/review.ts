@@ -4,6 +4,7 @@ import iconUrl from '../assets/icon.svg?url';
 import { drawArt } from '../src/art';
 import { objects } from '../src/config';
 import type { Reaction } from '../src/config/types';
+import { animals } from '../src/critters/animals';
 
 const icons = document.getElementById('icons')!;
 for (const [size, label] of [[60, '60px'], [76, '76px (iPad)'], [180, '180px']] as const) {
@@ -51,4 +52,9 @@ for (const o of objects) {
     svg.dataset.sprite = initial?.sprite ?? o.initial;
     handle.sprite?.(svg.dataset.sprite);
   }
+}
+
+const animalGrid = document.getElementById('animals')!;
+for (const a of animals) {
+  animalGrid.insertAdjacentHTML('beforeend', `<figure><img src="${a.svgUrl}" alt=""><figcaption>${a.name}</figcaption></figure>`);
 }

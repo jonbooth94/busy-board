@@ -102,6 +102,14 @@ export class AudioEngine {
     this.voices.push(voice);
   }
 
+  /** An optional bundled audio file (Color Critters animal sounds), at the same volume cap. */
+  playFile(url: string): void {
+    if (!this.running) return;
+    const audio = new Audio(url);
+    audio.volume = this.volume;
+    audio.play().catch(() => undefined);
+  }
+
   private stop(v: Voice, now: number): void {
     this.voices = this.voices.filter((x) => x !== v);
     try {

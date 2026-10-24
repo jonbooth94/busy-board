@@ -13,7 +13,7 @@ export interface PanelDeps {
   onChange(s: Settings): void;
   /** Volume preview. */
   onVolume(level: VolumeLevel): void;
-  /** "Back to the board" (only offered while a session is playing). */
+  /** "Back to playing" (only offered while a session is playing). */
   onResume(): void;
   /** "Start a new session": back to the closed cover. */
   onNewSession(): void;
@@ -65,14 +65,14 @@ export class ParentPanel {
         <header>
           <h1>Parent settings</h1>
           <div class="actions">
-            ${this.canResume ? '<button type="button" class="primary" data-action="resume">Back to the board</button>' : ''}
+            ${this.canResume ? '<button type="button" class="primary" data-action="resume">Back to playing</button>' : ''}
             <button type="button" class="${this.canResume ? '' : 'primary'}" data-action="new">Start a new session</button>
           </div>
         </header>
 
         <section>
           <h2>Session length</h2>
-          <p class="hint">The board winds down over the last 30 seconds, then says goodnight.</p>
+          <p class="hint">One timer for the whole app. Everything winds down over the last 30 seconds, then says goodnight.</p>
           <div class="row">${this.d.cfg.sessionOptions
             .map((m) => radio('session', String(m), m === null ? 'Off' : `${m} min`, s.sessionMinutes === m))
             .join('')}</div>

@@ -12,6 +12,10 @@
   --pad: 52px;
   --gap: 14px;
   --wind: 30s;
+  --grain:
+    repeating-linear-gradient(91deg, rgba(255, 255, 255, 0.06) 0 3px, transparent 3px 23px),
+    repeating-linear-gradient(89deg, rgba(90, 50, 20, 0.08) 0 2px, transparent 2px 41px);
+  --plate-shadow: inset 0 -5px 0 rgba(90, 55, 25, 0.22), 0 4px 0 rgba(70, 40, 15, 0.28);
 }
 
 /* Kid-proofing: no zoom, selection, callouts, highlights or pull-to-refresh. */
@@ -31,8 +35,94 @@ html, body {
 }
 
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+img { -webkit-user-drag: none; user-select: none; }
 button { font: inherit; color: inherit; border: 0; padding: 0; background: none; cursor: pointer; touch-action: none; }
 [hidden] { display: none !important; }
+
+/* Four screws, one in each corner of a plate. Set --at to move them in from the corners. */
+.cell, .choice, .tile {
+  --at: 16px;
+  background-color: var(--plate);
+  background-image:
+    radial-gradient(circle at var(--at) var(--at), var(--screw) 0 4px, transparent 5px),
+    radial-gradient(circle at calc(100% - var(--at)) var(--at), var(--screw) 0 4px, transparent 5px),
+    radial-gradient(circle at var(--at) calc(100% - var(--at)), var(--screw) 0 4px, transparent 5px),
+    radial-gradient(circle at calc(100% - var(--at)) calc(100% - var(--at)), var(--screw) 0 4px, transparent 5px);
+  box-shadow: var(--plate-shadow);
+}
+
+/* Home and clear buttons: small plain plates with an ink drawing. */
+.home-btn {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 22px;
+  background: var(--plate);
+  box-shadow: var(--plate-shadow);
+  display: grid;
+  place-items: center;
+}
+.home-btn > svg:first-child { width: 62%; height: 62%; }
+.home-btn:active { transform: translateY(2px) scale(0.96); }
+.home-btn.corner {
+  position: fixed;
+  z-index: 4;
+  top: max(8px, env(safe-area-inset-top));
+  left: max(8px, env(safe-area-inset-left));
+  width: 60px;
+  height: 60px;
+  border-radius: 18px;
+}
+/* On the board it stays inside the bare wood border, clear of the first plate. */
+#board-home {
+  top: max(4px, env(safe-area-inset-top));
+  left: max(4px, env(safe-area-inset-left));
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+}
+
+/* Wind-down: everything slowly dims over the last 30 seconds. Never a flash. */
+.dim {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  background: #2b1b10;
+  opacity: 0;
+  pointer-events: none;
+}
+body.winding-down .dim { opacity: 0.32; transition: opacity var(--wind) linear; }
+
+/* ---------- Chooser: Busy Board or Color Critters ---------- */
+.chooser {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6vw;
+  padding: var(--pad);
+  background-color: var(--wood);
+  background-image: var(--grain);
+}
+.choice {
+  --at: 24px;
+  width: min(38vw, 68vh);
+  aspect-ratio: 1;
+  border-radius: 40px;
+  display: grid;
+  place-items: center;
+  transition: transform 0.12s ease-out;
+}
+.choice svg { width: 76%; height: 76%; pointer-events: none; }
+.choice:active { transform: scale(0.96); }
+body[data-screen='play'] .choice { animation: nudge 4s ease-in-out infinite; }
+body[data-screen='play'] .choice + .choice { animation-delay: 2s; }
+@keyframes nudge {
+  0%, 80%, 100% { transform: none; }
+  88% { transform: scale(1.035) rotate(-1deg); }
+  94% { transform: scale(1.02) rotate(0.8deg); }
+}
 
 /* ---------- Board ---------- */
 .board {
@@ -45,35 +135,15 @@ button { font: inherit; color: inherit; border: 0; padding: 0; background: none;
   padding: max(var(--pad), env(safe-area-inset-top)) max(var(--pad), env(safe-area-inset-right))
     max(var(--pad), env(safe-area-inset-bottom)) max(var(--pad), env(safe-area-inset-left));
   background-color: var(--wood);
-  background-image:
-    repeating-linear-gradient(91deg, rgba(255, 255, 255, 0.06) 0 3px, transparent 3px 23px),
-    repeating-linear-gradient(89deg, rgba(90, 50, 20, 0.08) 0 2px, transparent 2px 41px);
+  background-image: var(--grain);
   touch-action: none;
 }
-/* Wind-down: the board slowly dims over the last 30 seconds. Never a flash. */
-.board::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: #2b1b10;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--wind) linear;
-}
-.board.winding-down::after { opacity: 0.32; }
 
 .cell {
   position: relative;
   min-width: 0;
   min-height: 0;
   border-radius: 26px;
-  background-color: var(--plate);
-  background-image:
-    radial-gradient(circle at 16px 16px, var(--screw) 0 4px, transparent 5px),
-    radial-gradient(circle at calc(100% - 16px) 16px, var(--screw) 0 4px, transparent 5px),
-    radial-gradient(circle at 16px calc(100% - 16px), var(--screw) 0 4px, transparent 5px),
-    radial-gradient(circle at calc(100% - 16px) calc(100% - 16px), var(--screw) 0 4px, transparent 5px);
-  box-shadow: inset 0 -5px 0 rgba(90, 55, 25, 0.22), 0 4px 0 rgba(70, 40, 15, 0.28);
 }
 .cell.empty { background-color: #dcb07a; }
 
@@ -144,6 +214,123 @@ button { font: inherit; color: inherit; border: 0; padding: 0; background: none;
 .art-lock-and-key[data-sprite='lock_open'] .key { transform: rotate(90deg); transition-delay: 0s; }
 .art-lock-and-key .shackle { transition: transform 0.25s ease-out; }
 .art-lock-and-key[data-sprite='lock_open'] .shackle { transform: translateY(-18px); transition-delay: 0.3s; }
+
+/* ---------- Color Critters: animal picker ---------- */
+.screen {
+  --gap: 10px;
+  position: fixed;
+  inset: 0;
+  padding: max(var(--gap), env(safe-area-inset-top)) max(var(--gap), env(safe-area-inset-right))
+    max(var(--gap), env(safe-area-inset-bottom)) max(var(--gap), env(safe-area-inset-left));
+  background-color: var(--wood);
+  background-image: var(--grain);
+}
+.picker {
+  overflow-y: auto;
+  touch-action: pan-y; /* more than 10 animals scroll */
+  scrollbar-width: none;
+}
+.animals {
+  /* 5 columns x 2 rows fill a landscape screen; side padding leaves room for the home button and the moon. */
+  --tile: min(calc((100vw - 2 * var(--gap) - 2 * 76px - 4 * 18px - 16px) / 5), calc((100dvh - 2 * var(--gap) - 18px - 16px) / 2));
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, var(--tile));
+  grid-auto-rows: var(--tile);
+  gap: 18px;
+  justify-content: center;
+  align-content: center;
+  padding: 8px 76px;
+}
+.tile {
+  --at: 13px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  touch-action: pan-y;
+}
+.tile:active { transform: scale(0.96); }
+/* The drawing is a sheet of paper screwed to the plate. */
+.tile .paper {
+  position: absolute;
+  inset: 12%;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 2px 0 rgba(70, 40, 15, 0.22);
+  overflow: hidden;
+}
+.tile img { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+/* ---------- Color Critters: coloring ---------- */
+.coloring {
+  /* Crayon height: five rows fit the screen height on their tray, never under 72 px (touch target). */
+  --sw: clamp(72px, calc((100dvh - 2 * var(--gap) - 20px) / 5), 110px);
+  --side: 88px;
+  --frame: 12px;
+  /* Room on the right for the parent moon, where the crayon tray reaches the top of the screen. */
+  --moon: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding-right: max(var(--moon), env(safe-area-inset-right));
+}
+@media (min-height: 760px) {
+  .coloring { --moon: var(--gap); }
+}
+.side {
+  flex: 0 0 var(--side);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.clear .ring { position: absolute; inset: -6px; width: calc(100% + 12px); height: calc(100% + 12px); pointer-events: none; }
+.clear .ring circle { fill: none; stroke: var(--terracotta); stroke-width: 8; stroke-linecap: round; transform: rotate(-90deg); transform-origin: 50% 50%; }
+
+/* The paper sits in a wooden frame (a box-shadow, so it takes no layout space). */
+.stage {
+  position: relative;
+  flex: 0 0 auto;
+  aspect-ratio: 1;
+  height: min(calc(100% - 2 * var(--frame)), calc(100vw - var(--side) - 2.6 * var(--sw) - 4px - 20px - 3 * 24px - 2 * var(--frame) - var(--gap) - var(--moon) - 8px));
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 0 0 var(--frame) var(--plate), 0 4px 0 var(--frame) rgba(70, 40, 15, 0.28);
+}
+#paint { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; }
+.outline { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+/* The crayons lie on a wooden tray. */
+.palette {
+  flex: 0 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, calc(var(--sw) * 1.3));
+  grid-template-rows: repeat(5, var(--sw));
+  grid-auto-flow: column;
+  column-gap: 4px;
+  padding: 10px;
+  border-radius: 26px;
+  background: var(--plate);
+  box-shadow: var(--plate-shadow);
+}
+.swatch {
+  border-radius: 18px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+  display: grid;
+  place-items: center;
+  transition: transform 0.12s, background-color 0.12s;
+}
+.swatch svg { width: 92%; height: auto; max-height: 90%; transition: transform 0.12s; }
+.swatch[aria-pressed='true'] {
+  background: var(--cream);
+  box-shadow: inset 0 0 0 5px var(--ink);
+}
+.swatch[aria-pressed='true'] svg { transform: scale(1.08) translateX(-3%); }
 
 /* ---------- Cover and goodnight: a closed wooden board ---------- */
 .cover {

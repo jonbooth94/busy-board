@@ -21,8 +21,8 @@ test('the parent gate ignores a quick tap and opens after a 3-second hold', asyn
   await page.mouse.up();
   await expect(page.locator('#parent')).toBeVisible();
 
-  // "Back to the board" resumes play.
-  await page.getByRole('button', { name: 'Back to the board' }).click();
+  // "Back to playing" resumes play.
+  await page.getByRole('button', { name: 'Back to playing' }).click();
   await expect(page.locator('#parent')).toBeHidden();
   await tap(page, 'light-switch');
   await expect(page.locator('.cell[data-id="light-switch"]')).toHaveAttribute('data-state', 'on');
@@ -44,7 +44,7 @@ test('settings: hide a toy, change length, volume and prompts; they persist', as
   await panel.getByText('Hide', { exact: true }).click();
   await expect(panel.getByText('Things to say while playing')).toBeHidden();
 
-  await panel.getByRole('button', { name: 'Back to the board' }).click();
+  await panel.getByRole('button', { name: 'Back to playing' }).click();
   await expect(page.locator('.cell[data-id]')).toHaveCount(11);
   await expect(page.locator('.cell.empty')).toHaveCount(1);
   await expect(page.locator('.cell[data-id="gears"]')).toHaveCount(0);
@@ -69,8 +69,8 @@ test('the session winds down, says goodnight, and stays closed until the parent 
   await openBoard(page);
   await tap(page, 'light-switch');
 
-  // Wind-down: the board dims and objects fall asleep one at a time.
-  await expect(page.locator('#board')).toHaveClass(/winding-down/, { timeout: 5000 });
+  // Wind-down: the screen dims and objects fall asleep one at a time.
+  await expect(page.locator('body')).toHaveClass(/winding-down/, { timeout: 5000 });
   await expect.poll(() => page.locator('.cell.asleep').count()).toBeGreaterThan(0);
   const partly = await page.locator('.cell.asleep').count();
   expect(partly).toBeLessThan(12);

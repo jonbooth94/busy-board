@@ -1,9 +1,9 @@
 import { registerSW } from 'virtual:pwa-register';
 
 // Update policy: the new service worker downloads silently and waits. It is only
-// activated (which reloads the page) when the board is closed (the cover before a
-// session, or goodnight), including right after a fresh launch.
-// Never while the child is playing; no banners or prompts.
+// activated (which reloads the page) when the doors are closed (the cover before a
+// session, or goodnight) and any drawing is saved, including right after a fresh launch.
+// Never while the child is playing, in either app; no banners or prompts.
 
 const HOUR = 60 * 60 * 1000;
 

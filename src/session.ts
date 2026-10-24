@@ -1,6 +1,8 @@
-// Session flow: cover -> play -> wind-down (last 30 s) -> goodnight. The game ends its own
-// sessions, so the parent never has to take the iPad away mid-tap. Restarting after goodnight
-// needs the parent gate; that survives reloads and updates via a stored "resting" flag.
+// Session flow: cover -> play -> wind-down (last 30 s) -> goodnight. "Play" covers the whole
+// app (the chooser, the board and Color Critters), so one timer caps screen time whichever she
+// picks. The game ends its own sessions, so the parent never has to take the iPad away mid-tap.
+// Restarting after goodnight needs the parent gate; that survives reloads and updates via a
+// stored "resting" flag.
 
 import type { AudioEngine } from './audio/engine';
 import type { Board } from './board';
@@ -25,6 +27,9 @@ export interface SessionDeps {
   sessionMs(): number | null;
   windDownMs: number;
   idleHintMs: number;
+  /** Idle hints only make sense while the board is showing. */
+  canHint(): boolean;
+  /** Called on every screen change. The touch router is enabled from here (only while the board is showing). */
   onScreen(screen: Screen): void;
 }
 
@@ -55,6 +60,7 @@ export class Session {
   showCover(): void {
     setResting(false);
     this.stopTimer();
+    document.body.classList.remove('winding-down');
     this.d.router.enabled = false;
     this.d.router.releaseAll();
     this.setScreen('cover');
@@ -71,7 +77,7 @@ export class Session {
     this.sleepPlan = [];
     this.hinted.clear();
     this.lastTouch = performance.now();
-    this.d.router.enabled = true;
+    document.body.classList.remove('winding-down');
     this.d.router.invalidate();
     this.setScreen('play');
     this.lastTick = performance.now();
@@ -120,7 +126,8 @@ export class Session {
       if (this.playedMs >= total) return this.goodnight();
     }
 
-    if (this.windDownAt === null && now - this.lastTouch >= this.d.idleHintMs) {
+    if (!this.d.canHint()) this.lastTouch = now;
+    else if (this.windDownAt === null && now - this.lastTouch >= this.d.idleHintMs) {
       this.lastTouch = now;
       this.hint();
     }
@@ -137,7 +144,7 @@ export class Session {
 
   private windDown(): void {
     this.windDownAt = this.playedMs;
-    this.d.board.el.classList.add('winding-down');
+    document.body.classList.add('winding-down');
     this.d.log.log('board', 'windDown', 'windDown');
     this.planSleep(this.playedMs);
   }

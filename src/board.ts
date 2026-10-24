@@ -25,7 +25,6 @@ export class Board {
     cancelAnimationFrame(this.frame);
     this.frame = 0;
     this.el.replaceChildren();
-    this.el.classList.remove('winding-down');
     this.controllers = [];
     const bySlot = new Map(objects.filter((o) => !hidden.has(o.id)).map((o) => [`${o.slot.col},${o.slot.row}`, o]));
     for (let row = 1; row <= this.cfg.rows; row++) {
