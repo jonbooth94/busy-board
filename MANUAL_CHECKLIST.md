@@ -9,7 +9,7 @@ Do this on the **iPad** (the main target) and, if you use one, the **Android tab
 
 ## 1. Install
 - [ ] iPad  - [ ] Tablet: Install from the browser (README: Safari → Share → **Add to Home Screen**; Chrome → **⋮ → Install app**).
-- [ ] iPad  - [ ] Tablet: The **Busy Board** icon (wooden board with a button, switch, knob and keys) looks right on the home screen, not cropped.
+- [ ] iPad  - [ ] Tablet: The **Heidi's App** icon (wooden board with a button, switch, knob and keys) looks right on the home screen, not cropped.
 - [ ] iPad  - [ ] Tablet: Opening it from the icon is **full screen**: no address bar.
 - [ ] iPad  - [ ] Tablet: It opens on the **closed wooden board**, with the two knobs gently pulsing.
 

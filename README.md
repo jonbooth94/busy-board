@@ -1,10 +1,12 @@
-# Busy Board
+# Heidi's App
 
 A digital busy board for a 2-year-old: 12 chunky objects on one wooden board, each doing one satisfying thing when tapped. **Color Critters**, the coloring app, lives inside it too: when the doors open she picks the board or the coloring page from two big pictures. Nothing can be done wrong, there are no words on the child's side, and the app ends its own sessions with a calm wind-down. It works fully offline once installed and makes no network requests while in use. There are no accounts, ads or analytics.
 
 Built from the *Busy Board Build Spec* in the parent folder. Color Critters was a separate app (`../color-critters`) and was moved in here, restyled to match the board.
 
 **Live app (once the GitHub repo is set up):** https://jonbooth94.github.io/busy-board/
+
+The app was called **Busy Board** until October 2026. The web address still says `busy-board` on purpose: changing it would break the copies already installed and lose saved drawings.
 
 ---
 
@@ -41,7 +43,7 @@ Pick an animal, pick a crayon, and color. The brown outlines always stay on top,
 2. Open **Safari** and go to https://jonbooth94.github.io/busy-board/
 3. Wait until you see the closed wooden board (a second or two). That's when it downloads everything it needs for offline use.
 4. Tap the **Share** button (square with an arrow), then **Add to Home Screen**, then **Add**.
-5. Open **Busy Board** from the home screen once while still online. From then on it works in airplane mode.
+5. Open **Heidi's App** from the home screen once while still online. From then on it works in airplane mode.
 
 It opens full screen. Hold the iPad in landscape; in portrait it shows a "turn me" picture instead of the board.
 
@@ -53,7 +55,7 @@ Guided Access keeps the iPad in one app until you end it with a passcode.
 
 **Turn it on (one time):** Settings → **Accessibility** → **Guided Access** → turn on. Then **Passcode Settings** → **Set Guided Access Passcode**.
 
-**Start:** open Busy Board, then triple-click the **top button** (or the **Home button** on iPads that have one) and tap **Start**. Tip: tap **Options** first and turn off **Motion** so the screen can't rotate.
+**Start:** open Heidi's App, then triple-click the **top button** (or the **Home button** on iPads that have one) and tap **Start**. Tip: tap **Options** first and turn off **Motion** so the screen can't rotate.
 
 **End:** triple-click the same button, enter your passcode, tap **End**.
 
@@ -65,7 +67,7 @@ Guided Access keeps the iPad in one app until you end it with a passcode.
 
 To lock it in, use **screen pinning**, exactly as described in the Color Critters README (Settings → Security → App pinning, then pin from the Recents screen).
 
-**If Chrome says "already installed" but the icon says the app isn't available:** the install didn't finish in the background. Long-press the icon → **Remove**, uninstall **Busy Board** in Settings → Apps if it's listed, then install again from Chrome and wait for Android's "installed" notification before tapping the icon. Don't clear Chrome's site data for `jonbooth94.github.io` to fix this: Color Critters lives on the same site, and its drawings would be deleted too.
+**If Chrome says "already installed" but the icon says the app isn't available:** the install didn't finish in the background. Long-press the icon → **Remove**, uninstall **Heidi's App** (or **Busy Board**, its old name) in Settings → Apps if it's listed, then install again from Chrome and wait for Android's "installed" notification before tapping the icon. Don't clear Chrome's site data for `jonbooth94.github.io` to fix this: Color Critters lives on the same site, and its drawings would be deleted too.
 
 ## Parent gate and settings
 

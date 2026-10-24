@@ -20,8 +20,8 @@ export default defineConfig({
       injectRegister: false,
       manifest: {
         id: '/busy-board/',
-        name: 'Busy Board',
-        short_name: 'Busy Board',
+        name: "Heidi's App",
+        short_name: "Heidi's App",
         description: 'A digital busy board and coloring app for toddlers. Works offline.',
         start_url: '/busy-board/',
         scope: '/busy-board/',

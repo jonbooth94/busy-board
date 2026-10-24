@@ -185,7 +185,7 @@ test('manifest is valid and the app is installable', async ({ page, browserName 
   const res = await page.request.get(new URL(href!, page.url()).href);
   expect(res.ok()).toBe(true);
   const manifest = await res.json();
-  expect(manifest).toMatchObject({ name: 'Busy Board', display: 'fullscreen', orientation: 'landscape', start_url: '/busy-board/' });
+  expect(manifest).toMatchObject({ name: "Heidi's App", display: 'fullscreen', orientation: 'landscape', start_url: '/busy-board/' });
   for (const icon of manifest.icons as { src: string }[]) {
     expect((await page.request.get(new URL(icon.src, res.url()).href)).ok()).toBe(true);
   }
