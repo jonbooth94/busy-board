@@ -10,7 +10,7 @@ const out = (name: string) => join(root, 'public', name);
 for (const size of [192, 512]) {
   await sharp(svg, { density: (72 * size) / 1024 }).resize(size, size).png().toFile(out(`pwa-${size}.png`));
 }
-// The artwork keeps the board inside the central safe zone, so it also works as a maskable icon.
+// The artwork stays inside the central safe zone, so it also works as a maskable icon.
 await sharp(svg, { density: 36 }).resize(512, 512).png().toFile(out('maskable-512.png'));
 // iPad home screen icon (iOS prefers apple-touch-icon over the manifest icons).
 await sharp(svg, { density: (72 * 180) / 1024 }).resize(180, 180).png().toFile(out('apple-touch-icon.png'));
